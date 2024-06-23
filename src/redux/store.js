@@ -7,18 +7,19 @@ import { persistStore, persistReducer,
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER, } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+  REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
-    key: 'root',
-    storage,
-    whitelist: ['items']
-}
+  key: 'root',
+  storage,
+  whitelist: ['items']
+};
 
-const persistedReducer = persistReducer(persistConfig, tasksReducer)
+const persistedReducer = persistReducer(persistConfig, tasksReducer);
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     tasks: persistedReducer,
     filters: filtersReducer,
@@ -31,4 +32,6 @@ export const store = configureStore({
     })
 });
 
-export const persistor = persistStore(store)
+const persistor = persistStore(store);
+
+export { store, persistor };
