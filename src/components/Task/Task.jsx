@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
 import { deleteTask, toggleCompleted } from "../../redux/tasksSlice";
 import css from "./Task.module.css";
+import clsx from "clsx";
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export const Task = ({ task }) => {
     dispatch(toggleCompleted(task.id));
   };
 
+  const strikeout = task.completed;
+
   return (
     <div className={css.wrapper}>
       <input
@@ -22,7 +25,9 @@ export const Task = ({ task }) => {
         checked={task.completed}
         onChange={handleToggle}
       />
-      <p className={css.text}>{task.text}</p>
+      <p className={clsx(css.text, { [css.strikeout]: strikeout })}>
+        {task.text}
+      </p>
       <button className={css.btn} onClick={handleDelete}>
         <MdClose size={24} />
       </button>

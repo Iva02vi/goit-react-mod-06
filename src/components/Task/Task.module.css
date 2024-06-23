@@ -9,6 +9,10 @@
   flex-grow: 1;
 }
 
+.text.strikeout {
+  text-decoration: line-through;
+}
+
 .btn {
   display: flex;
   align-items: center;
